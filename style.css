@@ -620,3 +620,163 @@ footer {
         transform: none;
     }
 }
+/* =======================================================
+   RESPONSIVIDADE AVANÇADA PARA TODOS OS TIPOS DE TELA
+   ======================================================= */
+
+/* Monitores Menores e Laptops (até 1200px) */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* Tablets em modo Paisagem (até 992px) */
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-text {
+        text-align: center;
+    }
+    .about-text .section-title {
+        text-align: center;
+    }
+    /* Adapta a faixa de credibilidade para 2 colunas em vez de 4 */
+    .cred-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    /* Adapta os destaques do topo para não espremer muito */
+    .hero-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hero-highlights div:last-child {
+        grid-column: 1 / -1; /* Faz o último item ocupar a linha toda no tablet */
+    }
+}
+
+/* Tablets em modo Retrato e Celulares Grandes (até 768px) */
+@media (max-width: 768px) {
+    .section {
+        padding: 70px 0;
+    }
+    .hero {
+        padding-top: 130px;
+        padding-bottom: 60px;
+    }
+    
+    /* Ajustes das Grids que sobraram para 1 coluna */
+    .hero-highlights,
+    .cred-grid,
+    .news-layout {
+        grid-template-columns: 1fr;
+    }
+    .hero-highlights div:last-child {
+        grid-column: auto;
+    }
+
+    /* Rodapé */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Menu Mobile - Configuração completa */
+    .mobile-menu-icon {
+        display: flex;
+    }
+    nav {
+        display: none;
+        position: absolute;
+        top: 100%; /* Posiciona exatamente abaixo do header */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-white);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 12px 24px rgba(15, 22, 36, 0.08);
+        padding: 20px 0;
+    }
+    nav.active {
+        display: block;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center; /* Centraliza os itens no mobile para melhor visualização */
+    }
+    .nav-btn {
+        text-align: center;
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+/* Celulares Pequenos (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px; /* Reduz margens laterais para aproveitar a tela */
+    }
+    
+    .section-title {
+        font-size: 1.65rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.9rem;
+        margin-bottom: 16px;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    /* Faz os botões ocuparem 100% da largura da tela para facilitar o clique */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px 20px;
+    }
+    
+    /* Espaçamentos internos menores nos cards */
+    .card, .feature-item, .news-card, .news-post {
+        padding: 20px;
+    }
+    
+    .cta-box {
+        padding: 32px 20px;
+    }
+
+    .news-hero {
+        padding-top: 120px;
+    }
+}
+
+/* Acessibilidade - Respeita preferência do usuário por menos animações */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal-on-scroll,
+    .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}
