@@ -4,97 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nome do Escritório | Advocacia Estratégica</title>
-    
+    <meta name="description" content="Assessoria jurídica estratégica com atendimento personalizado para empresas e famílias.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header id="main-header">
         <div class="container header-container">
-            <div class="logo">
-                Nome<span>Advocacia</span>
-            </div>
-            
+            <a href="#home" class="logo">Nome<span>Advocacia</span></a>
+
             <nav id="nav-menu">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#atuacao">Áreas de Atuação</a></li>
-                    <li><a href="#equipe">Equipe</a></li>
+                    <li><a href="noticias.html">Notícias Jurídicas</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
                     <li><a href="#contato" class="nav-btn">Fale Conosco</a></li>
                 </ul>
             </nav>
 
-            <div class="mobile-menu-icon" id="menu-toggle">
+            <button class="mobile-menu-icon" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
     <section id="home" class="hero">
+        <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1>Advocacia Estratégica & Excelência Acadêmica</h1>
-            <p>Soluções jurídicas personalizadas, fundamentadas no rigor técnico e na clareza de cada etapa do seu processo.</p>
+            <p class="eyebrow">Atendimento em todo o Brasil</p>
+            <h1>Advocacia estratégica para decisões seguras e inteligentes</h1>
+            <p>Soluções jurídicas personalizadas, fundamentadas em rigor técnico, comunicação clara e foco no resultado do cliente.</p>
             <div class="hero-buttons">
                 <a href="#contato" class="btn btn-primary">Falar com um Especialista</a>
                 <a href="#atuacao" class="btn btn-secondary">Conhecer Áreas</a>
             </div>
+            <div class="hero-highlights">
+                <div><strong>+12 anos</strong><span>de atuação estratégica</span></div>
+                <div><strong>Atendimento próximo</strong><span>com atualizações constantes</span></div>
+                <div><strong>Visão técnica</strong><span>com experiência acadêmica</span></div>
+            </div>
         </div>
     </section>
 
-    <section class="credibility-banner">
+    <section class="credibility-banner" aria-label="Proposta de valor">
         <div class="container cred-grid">
             <div class="cred-item">Docência & Prática</div>
-            <div class="cred-item">Atuação Estratégica</div>
-            <div class="cred-item">Atendimento Exclusivo</div>
+            <div class="cred-item">Atuação Preventiva</div>
+            <div class="cred-item">Estratégia Sob Medida</div>
             <div class="cred-item">Confiança & Ética</div>
         </div>
     </section>
 
-    <section id="atuacao" class="section">
+    <section id="atuacao" class="section reveal-on-scroll">
         <div class="container">
             <h2 class="section-title">Nossas Especialidades</h2>
+            <p class="section-subtitle">Atuação consultiva e contenciosa com foco em reduzir riscos e proteger seu patrimônio.</p>
             <div class="cards-grid">
-                
-                <div class="card">
+                <article class="card">
                     <h3>Direito Societário</h3>
                     <p>Proteção e estruturação para o crescimento seguro e sustentável da sua empresa corporativa.</p>
-                    <a href="#" class="card-link">Saiba mais &rarr;</a>
-                </div>
+                    <a href="#contato" class="card-link">Saiba mais &rarr;</a>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <h3>Contratos Complexos</h3>
                     <p>Análise, elaboração e revisão de instrumentos jurídicos para mitigar riscos e garantir segurança.</p>
-                    <a href="#" class="card-link">Saiba mais &rarr;</a>
-                </div>
+                    <a href="#contato" class="card-link">Saiba mais &rarr;</a>
+                </article>
 
-                <div class="card">
+                <article class="card">
                     <h3>Planejamento Patrimonial</h3>
                     <p>Estratégias lícitas para proteção, sucessão e organização do patrimônio familiar e empresarial.</p>
-                    <a href="#" class="card-link">Saiba mais &rarr;</a>
-                </div>
-
+                    <a href="#contato" class="card-link">Saiba mais &rarr;</a>
+                </article>
             </div>
         </div>
     </section>
 
-    <section id="sobre" class="section bg-dark text-light">
+    <section id="sobre" class="section bg-dark text-light reveal-on-scroll">
         <div class="container about-grid">
             <div class="about-image">
-                <div class="img-placeholder"></div>
+                <div class="img-placeholder">
+                    <span>Espaço reservado para imagem institucional</span>
+                </div>
             </div>
             <div class="about-text">
-                <h2 class="section-title">Aliando a Teoria à Prática Jurídica</h2>
-                <p>Acreditamos que a verdadeira advocacia vai além da simples aplicação da lei; ela exige estudo contínuo, visão estratégica e empatia.</p>
-                <p>Liderado por um profissional que une a vivência dos tribunais à excelência da sala de aula, nosso escritório oferece um modelo de atendimento onde cada caso é tratado como um projeto único.</p>
-                <a href="#" class="btn btn-primary" style="margin-top: 20px;">Conheça nossa trajetória</a>
+                <h2 class="section-title">Aliando teoria e prática jurídica</h2>
+                <p>A verdadeira advocacia exige estudo contínuo, leitura estratégica dos cenários e sensibilidade para compreender o momento de cada cliente.</p>
+                <p>Liderado por um profissional que une vivência forense à excelência acadêmica, o escritório entrega orientação precisa em cada etapa da jornada jurídica.</p>
+                <a href="#contato" class="btn btn-primary">Conheça nossa trajetória</a>
             </div>
+        </div>
+    </section>
+
+    <section id="diferenciais" class="section section-light reveal-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Por que escolher nosso escritório?</h2>
+            <div class="feature-grid">
+                <article class="feature-item">
+                    <h3>Comunicação clara</h3>
+                    <p>Você recebe orientações objetivas e entende o cenário jurídico para tomar decisões com segurança.</p>
+                </article>
+                <article class="feature-item">
+                    <h3>Estratégia personalizada</h3>
+                    <p>Cada caso é tratado de forma única, respeitando contexto, objetivos e prioridades do cliente.</p>
+                </article>
+                <article class="feature-item">
+                    <h3>Atuação preventiva</h3>
+                    <p>Mitigamos riscos antes que se tornem problemas maiores, preservando tempo e patrimônio.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="noticias-preview" class="section reveal-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Notícias do mundo jurídico</h2>
+            <p class="section-subtitle">Acompanhe decisões relevantes, tendências legislativas e análises práticas para empresas e famílias.</p>
+            <div class="news-grid">
+                <article class="news-card">
+                    <span class="news-category">Tribunais Superiores</span>
+                    <h3>STJ e contratos empresariais: o que muda na prática?</h3>
+                    <p>Entenda os impactos das decisões recentes na elaboração de cláusulas e na prevenção de litígios.</p>
+                </article>
+                <article class="news-card">
+                    <span class="news-category">Direito de Família</span>
+                    <h3>Planejamento sucessório ganha destaque em 2026</h3>
+                    <p>Saiba quais instrumentos podem reduzir conflitos e garantir maior segurança patrimonial.</p>
+                </article>
+            </div>
+            <div class="news-preview-cta">
+                <a href="noticias.html" class="btn btn-primary">Ver todas as notícias</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section cta-section reveal-on-scroll">
+        <div class="container cta-box">
+            <h2>Vamos conversar sobre o seu caso?</h2>
+            <p>Agende um atendimento e receba uma análise inicial com direcionamento estratégico.</p>
+            <a href="mailto:contato@nomeadvocacia.com" class="btn btn-primary">Enviar e-mail</a>
         </div>
     </section>
 
@@ -106,6 +164,7 @@
             </div>
             <div class="footer-links">
                 <a href="#">Política de Privacidade</a>
+                <a href="noticias.html">Notícias Jurídicas</a>
                 <a href="#">LinkedIn</a>
                 <a href="#">Instagram</a>
             </div>
