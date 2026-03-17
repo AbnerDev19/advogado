@@ -3,174 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Escritório | Advocacia Estratégica</title>
-    <meta name="description" content="Assessoria jurídica estratégica com atendimento personalizado para empresas e famílias.">
+    <title>Vitor Rocha | Advocacia Estratégica</title>
+    <meta name="description" content="Advocacia estratégica com atendimento personalizado, comunicação clara e soluções jurídicas seguras para pessoas e empresas.">
+    <meta name="theme-color" content="#12151c">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-    <header id="main-header">
+    <header class="site-header" id="main-header">
         <div class="container header-container">
-            <a href="#home" class="logo">Vitor<span>Rocha</span></a>
+            <a href="#home" class="brand" aria-label="Página inicial Vitor Rocha Advocacia">
+                <span class="brand-monogram">VR</span>
+                <span class="brand-text">
+                    <strong>Vitor Rocha</strong>
+                    <small>Advocacia Estratégica</small>
+                </span>
+            </a>
 
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#atuacao">Áreas de Atuação</a></li>
-                    <li><a href="noticias.html">Notícias Jurídicas</a></li>
-                    <li><a href="#diferenciais">Diferenciais</a></li>
-                    <li><a href="#contato" class="nav-btn">Fale Conosco</a></li>
-                </ul>
-            </nav>
-
-            <button class="mobile-menu-icon" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
+
+            <nav class="site-nav" id="nav-menu" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#atuacao">Atuação</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="noticias.html">Conteúdo</a></li>
+                    <li><a href="#contato" class="btn btn-sm btn-dark">Fale conosco</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <p class="eyebrow">Atendimento em todo o Brasil</p>
-            <h1>Advocacia estratégica para decisões seguras e inteligentes</h1>
-            <p>Soluções jurídicas personalizadas, fundamentadas em rigor técnico, comunicação clara e foco no resultado do cliente.</p>
-            <div class="hero-buttons">
-                <a href="#contato" class="btn btn-primary">Falar com um Especialista</a>
-                <a href="#atuacao" class="btn btn-secondary">Conhecer Áreas</a>
+    <main id="conteudo">
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="container hero-grid">
+                <div class="hero-copy reveal-on-scroll">
+                    <p class="eyebrow">Atendimento estratégico e personalizado</p>
+                    <h1>Segurança jurídica para decisões importantes.</h1>
+                    <p class="hero-text">
+                        Atuação jurídica com olhar técnico, comunicação transparente e estratégias sob medida para proteger direitos,
+                        patrimônio e relações negociais com seriedade.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#contato" class="btn btn-primary">Agendar atendimento</a>
+                        <a href="#atuacao" class="btn btn-secondary">Ver áreas de atuação</a>
+                    </div>
+
+                    <ul class="hero-metrics" aria-label="Destaques do escritório">
+                        <li>
+                            <strong>Atendimento próximo</strong>
+                            <span>Orientação clara em cada etapa.</span>
+                        </li>
+                        <li>
+                            <strong>Visão estratégica</strong>
+                            <span>Atuação preventiva e contenciosa.</span>
+                        </li>
+                        <li>
+                            <strong>Excelência profissional</strong>
+                            <span>Compromisso técnico, ético e humano.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="hero-card reveal-on-scroll" aria-label="Resumo institucional">
+                    <p class="hero-card-label">Advocacia com posicionamento premium</p>
+                    <h2>Atuação segura, discreta e eficiente.</h2>
+                    <p>
+                        Um site institucional pensado para transmitir credibilidade, organização e confiança desde o primeiro contato.
+                    </p>
+                    <div class="hero-card-divider"></div>
+                    <ul>
+                        <li>Consultoria jurídica estratégica</li>
+                        <li>Atuação orientada por resultado</li>
+                        <li>Relacionamento profissional e humanizado</li>
+                    </ul>
+                </aside>
             </div>
-            <div class="hero-highlights">
-                <div><strong>+12 anos</strong><span>de atuação estratégica</span></div>
-                <div><strong>Atendimento próximo</strong><span>com atualizações constantes</span></div>
-                <div><strong>Visão técnica</strong><span>com experiência acadêmica</span></div>
+        </section>
+
+        <section class="trust-bar" aria-label="Diferenciais institucionais">
+            <div class="container trust-grid">
+                <p>Ética profissional</p>
+                <p>Atendimento personalizado</p>
+                <p>Estratégia sob medida</p>
+                <p>Comunicação clara</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="credibility-banner" aria-label="Proposta de valor">
-        <div class="container cred-grid">
-            <div class="cred-item">Docência & Prática</div>
-            <div class="cred-item">Atuação Preventiva</div>
-            <div class="cred-item">Estratégia Sob Medida</div>
-            <div class="cred-item">Confiança & Ética</div>
-        </div>
-    </section>
+        <section class="section" id="sobre">
+            <div class="container about-grid">
+                <div class="about-content reveal-on-scroll">
+                    <p class="section-tag">Sobre</p>
+                    <h2 class="section-title text-left">Uma advocacia que une técnica, presença e confiança.</h2>
+                    <p>
+                        O escritório foi pensado para oferecer orientação jurídica segura, atendimento individualizado e leitura estratégica
+                        de cada demanda. Mais do que responder problemas, a proposta é construir soluções sólidas e adequadas à realidade de cada cliente.
+                    </p>
+                    <p>
+                        A comunicação é direta, o acompanhamento é próximo e cada atuação é conduzida com responsabilidade, discrição e foco em resultado.
+                    </p>
+                    <a href="#contato" class="btn btn-primary">Falar com o escritório</a>
+                </div>
 
-    <section id="atuacao" class="section reveal-on-scroll">
-        <div class="container">
-            <h2 class="section-title">Nossas Especialidades</h2>
-            <p class="section-subtitle">Atuação consultiva e contenciosa com foco em reduzir riscos e proteger seu patrimônio.</p>
-            <div class="cards-grid">
-                <article class="card">
-                    <h3>Direito Societário</h3>
-                    <p>Proteção e estruturação para o crescimento seguro e sustentável da sua empresa corporativa.</p>
-                    <a href="#contato" class="card-link">Saiba mais &rarr;</a>
-                </article>
-
-                <article class="card">
-                    <h3>Contratos Complexos</h3>
-                    <p>Análise, elaboração e revisão de instrumentos jurídicos para mitigar riscos e garantir segurança.</p>
-                    <a href="#contato" class="card-link">Saiba mais &rarr;</a>
-                </article>
-
-                <article class="card">
-                    <h3>Planejamento Patrimonial</h3>
-                    <p>Estratégias lícitas para proteção, sucessão e organização do patrimônio familiar e empresarial.</p>
-                    <a href="#contato" class="card-link">Saiba mais &rarr;</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="sobre" class="section bg-dark text-light reveal-on-scroll">
-        <div class="container about-grid">
-            <div class="about-image">
-                <div class="img-placeholder">
-                    <span>Espaço reservado para imagem institucional</span>
+                <div class="about-panel reveal-on-scroll" aria-label="Posicionamento do escritório">
+                    <div class="about-badge">VR</div>
+                    <h3>Atuação moderna, elegante e objetiva.</h3>
+                    <p>
+                        Uma presença institucional forte, com linguagem profissional e experiência digital alinhada à imagem de um escritório contemporâneo.
+                    </p>
                 </div>
             </div>
-            <div class="about-text">
-                <h2 class="section-title">Aliando teoria e prática jurídica</h2>
-                <p>A verdadeira advocacia exige estudo contínuo, leitura estratégica dos cenários e sensibilidade para compreender o momento de cada cliente.</p>
-                <p>Liderado por um profissional que une vivência forense à excelência acadêmica, o escritório entrega orientação precisa em cada etapa da jornada jurídica.</p>
-                <a href="#contato" class="btn btn-primary">Conheça nossa trajetória</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="diferenciais" class="section section-light reveal-on-scroll">
-        <div class="container">
-            <h2 class="section-title">Por que escolher nosso escritório?</h2>
-            <div class="feature-grid">
-                <article class="feature-item">
-                    <h3>Comunicação clara</h3>
-                    <p>Você recebe orientações objetivas e entende o cenário jurídico para tomar decisões com segurança.</p>
-                </article>
-                <article class="feature-item">
-                    <h3>Estratégia personalizada</h3>
-                    <p>Cada caso é tratado de forma única, respeitando contexto, objetivos e prioridades do cliente.</p>
-                </article>
-                <article class="feature-item">
-                    <h3>Atuação preventiva</h3>
-                    <p>Mitigamos riscos antes que se tornem problemas maiores, preservando tempo e patrimônio.</p>
-                </article>
-            </div>
-        </div>
-    </section>
+        <section class="section section-light" id="atuacao">
+            <div class="container">
+                <div class="section-heading reveal-on-scroll">
+                    <p class="section-tag">Áreas de atuação</p>
+                    <h2 class="section-title">Serviços jurídicos com abordagem estratégica.</h2>
+                    <p class="section-subtitle">
+                        Estrutura pensada para comunicar autoridade, clareza e segurança ao cliente desde os primeiros minutos de navegação.
+                    </p>
+                </div>
 
-    <section id="noticias-preview" class="section reveal-on-scroll">
-        <div class="container">
-            <h2 class="section-title">Notícias do mundo jurídico</h2>
-            <p class="section-subtitle">Acompanhe decisões relevantes, tendências legislativas e análises práticas para empresas e famílias.</p>
-            <div class="news-grid">
-                <article class="news-card">
-                    <span class="news-category">Tribunais Superiores</span>
-                    <h3>STJ e contratos empresariais: o que muda na prática?</h3>
-                    <p>Entenda os impactos das decisões recentes na elaboração de cláusulas e na prevenção de litígios.</p>
-                </article>
-                <article class="news-card">
-                    <span class="news-category">Direito de Família</span>
-                    <h3>Planejamento sucessório ganha destaque em 2026</h3>
-                    <p>Saiba quais instrumentos podem reduzir conflitos e garantir maior segurança patrimonial.</p>
-                </article>
-            </div>
-            <div class="news-preview-cta">
-                <a href="noticias.html" class="btn btn-primary">Ver todas as notícias</a>
-            </div>
-        </div>
-    </section>
+                <div class="cards-grid">
+                    <article class="info-card reveal-on-scroll">
+                        <span class="card-index">01</span>
+                        <h3>Consultoria jurídica</h3>
+                        <p>Análise preventiva, orientação técnica e suporte para decisões com menor exposição a riscos.</p>
+                    </article>
 
-    <section id="contato" class="section cta-section reveal-on-scroll">
-        <div class="container cta-box">
-            <h2>Vamos conversar sobre o seu caso?</h2>
-            <p>Agende um atendimento e receba uma análise inicial com direcionamento estratégico.</p>
-            <a href="mailto:contato@nomeadvocacia.com" class="btn btn-primary">Enviar e-mail</a>
-        </div>
-    </section>
+                    <article class="info-card reveal-on-scroll">
+                        <span class="card-index">02</span>
+                        <h3>Contratos e negociações</h3>
+                        <p>Elaboração, revisão e interpretação contratual com foco em segurança jurídica e previsibilidade.</p>
+                    </article>
 
-    <footer>
+                    <article class="info-card reveal-on-scroll">
+                        <span class="card-index">03</span>
+                        <h3>Patrimônio e planejamento</h3>
+                        <p>Estratégias jurídicas voltadas à organização patrimonial, proteção e continuidade.</p>
+                    </article>
+
+                    <article class="info-card reveal-on-scroll">
+                        <span class="card-index">04</span>
+                        <h3>Atuação contenciosa</h3>
+                        <p>Representação técnica com postura firme, leitura estratégica e acompanhamento responsável.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark" id="diferenciais">
+            <div class="container">
+                <div class="section-heading reveal-on-scroll">
+                    <p class="section-tag section-tag-light">Diferenciais</p>
+                    <h2 class="section-title text-light">Por que este site transmite mais valor profissional.</h2>
+                    <p class="section-subtitle text-soft">
+                        A estrutura visual e textual foi refinada para representar um escritório sério, atual e confiável.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card reveal-on-scroll">
+                        <h3>Identidade mais forte</h3>
+                        <p>Marca, tipografia e composição visual mais consistentes com um posicionamento premium.</p>
+                    </article>
+                    <article class="feature-card reveal-on-scroll">
+                        <h3>Melhor experiência</h3>
+                        <p>Navegação mais limpa, leitura confortável e CTAs melhor distribuídos ao longo da página.</p>
+                    </article>
+                    <article class="feature-card reveal-on-scroll">
+                        <h3>Mais credibilidade</h3>
+                        <p>Textos mais humanos, profissionais e objetivos, sem aparência genérica ou improvisada.</p>
+                    </article>
+                    <article class="feature-card reveal-on-scroll">
+                        <h3>Base mais sólida</h3>
+                        <p>Código mais organizado, acessível, responsivo e pronto para evoluir com novas seções.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="conteudos">
+            <div class="container">
+                <div class="section-heading reveal-on-scroll">
+                    <p class="section-tag">Conteúdo jurídico</p>
+                    <h2 class="section-title">Informação útil também fortalece autoridade.</h2>
+                    <p class="section-subtitle">Uma área de notícias e artigos ajuda o escritório a educar, gerar confiança e reforçar presença digital.</p>
+                </div>
+
+                <div class="news-grid">
+                    <article class="news-card reveal-on-scroll">
+                        <span class="news-category">Empresarial</span>
+                        <h3>Contratos bem estruturados evitam conflitos e protegem relações comerciais.</h3>
+                        <p>Uma presença digital profissional também comunica organização e segurança antes do primeiro atendimento.</p>
+                    </article>
+                    <article class="news-card reveal-on-scroll">
+                        <span class="news-category">Patrimonial</span>
+                        <h3>Planejamento jurídico preventivo reduz riscos e preserva decisões importantes.</h3>
+                        <p>Conteúdo estratégico ajuda a demonstrar domínio técnico e cria aproximação com potenciais clientes.</p>
+                    </article>
+                </div>
+
+                <div class="section-cta reveal-on-scroll">
+                    <a href="noticias.html" class="btn btn-primary">Acessar página de conteúdo</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section" id="contato">
+            <div class="container">
+                <div class="cta-box reveal-on-scroll">
+                    <p class="section-tag section-tag-light">Contato</p>
+                    <h2>Vamos transformar essa presença digital em algo à altura do escritório.</h2>
+                    <p>
+                        Este layout já está mais profissional, humano e pronto para personalização final com dados reais, áreas específicas,
+                        redes sociais e canais oficiais de atendimento.
+                    </p>
+                    <div class="cta-actions">
+                        <a href="mailto:contato@vitorrocha.adv.br" class="btn btn-primary">Enviar e-mail</a>
+                        <a href="https://wa.me/5500000000000" class="btn btn-secondary btn-secondary-dark" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
         <div class="container footer-content">
-            <div class="footer-brand">
-                <h3>Nome Advocacia</h3>
-                <p>Excelência e estratégia a favor dos seus direitos.</p>
+            <div>
+                <p class="footer-brand">Vitor Rocha Advocacia</p>
+                <p class="footer-text">Advocacia estratégica com presença institucional forte, linguagem clara e foco em confiança.</p>
             </div>
-            <div class="footer-links">
-                <a href="#">Política de Privacidade</a>
-                <a href="noticias.html">Notícias Jurídicas</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Instagram</a>
-            </div>
+
+            <nav class="footer-nav" aria-label="Links do rodapé">
+                <a href="#sobre">Sobre</a>
+                <a href="#atuacao">Atuação</a>
+                <a href="noticias.html">Conteúdo</a>
+                <a href="#contato">Contato</a>
+            </nav>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Nome Advocacia. Site com caráter meramente informativo, respeitando o provimento da OAB.</p>
+
+        <div class="container footer-bottom">
+            <p>© <span id="current-year"></span> Vitor Rocha Advocacia. Conteúdo meramente informativo, em conformidade com a comunicação institucional da advocacia.</p>
         </div>
     </footer>
 
