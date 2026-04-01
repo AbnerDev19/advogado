@@ -66,4 +66,39 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         revealItems.forEach(item => item.classList.add('is-visible'));
     }
+
+    // ==========================================
+    // Lógica do Tema Claro/Escuro (Dark Mode Toggle)
+    // ==========================================
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const rootHtml = document.documentElement; // Pega a tag <html>
+
+    if (themeToggleBtn) {
+        // Verifica se há um tema salvo no LocalStorage
+        const savedTheme = localStorage.getItem('adv_theme');
+        
+        // Verifica a preferência do sistema operacional
+        const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+        // Aplica o tema claro se salvo, ou se for a preferência do sistema (e nada foi salvo)
+        if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
+            rootHtml.setAttribute('data-theme', 'light');
+        }
+
+        // Evento de clique no botão
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootHtml.getAttribute('data-theme');
+            let targetTheme = 'light';
+
+            if (currentTheme === 'light') {
+                targetTheme = 'dark';
+                rootHtml.removeAttribute('data-theme'); // Remove para voltar ao Dark (padrão)
+            } else {
+                rootHtml.setAttribute('data-theme', 'light');
+            }
+
+            // Salva a escolha no navegador do usuário
+            localStorage.setItem('adv_theme', targetTheme);
+        });
+    }
 });
