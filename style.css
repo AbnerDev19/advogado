@@ -807,11 +807,19 @@ h1, h2, h3 {
     transform: translateY(0);
 }
 
-/* ── Responsivo 1100px ── */
+/* ── Responsivo 1100px (Tablets em modo paisagem e Ecrãs pequenos) ── */
 @media (max-width: 1100px) {
     .hero-grid,
     .about-grid {
-        grid-template-columns: 1fr 1fr;
+        /* Quebra a estrutura para 1 coluna mais cedo para não "esmagar" os cards laterais */
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-card, .about-panel {
+        /* Centraliza os cards quando passam para baixo do texto */
+        max-width: 600px;
+        margin: 0 auto; 
     }
 
     .feature-grid {
@@ -819,7 +827,7 @@ h1, h2, h3 {
     }
 }
 
-/* ── Responsivo 900px ── */
+/* ── Responsivo 900px (Tablets em modo retrato) ── */
 @media (max-width: 900px) {
     :root { --header-height: 74px; }
 
@@ -865,18 +873,23 @@ h1, h2, h3 {
         color: var(--text-light);
     }
 
-    .hero-grid,
-    .about-grid,
     .cards-grid,
-    .feature-grid,
     .news-grid,
     .news-layout,
-    .hero-metrics,
-    .trust-grid {
+    .hero-metrics {
         grid-template-columns: 1fr;
     }
 
-    .hero { padding-top: 72px; }
+    /* Trust bar dividida em 2 colunas para não criar um bloco gigante na vertical */
+    .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 24px 0;
+    }
+
+    /* Redução drástica de paddings para não desperdiçar ecrã */
+    .hero { padding: 40px 0; }
+    .section { padding: 60px 0; }
 
     .hero-card,
     .about-content,
@@ -885,35 +898,50 @@ h1, h2, h3 {
         text-align: left;
     }
 
-    .section-heading { margin-left: 0; margin-right: 0; }
+    .section-heading { margin-left: 0; margin-right: 0; margin-bottom: 32px; }
 
     .footer-content {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .footer-nav { justify-content: flex-start; }
+    .footer-nav { justify-content: flex-start; gap: 12px; }
 }
 
-/* ── Responsivo 640px ── */
+/* ── Responsivo 640px (Smartphones) ── */
 @media (max-width: 640px) {
-    .section { padding: 78px 0; }
+    .section { padding: 48px 0; } /* Padding otimizado para mobile */
 
-    .container { width: min(100% - 24px, var(--container)); }
+    .container { width: min(100% - 32px, var(--container)); }
 
     .brand-text small { display: none; }
 
+    /* Ajuste de fontes e prevenção de transbordo de palavras longas */
     .hero h1,
     .news-hero h1 {
-        font-size: clamp(2rem, 10vw, 3rem);
+        font-size: clamp(2.2rem, 8vw, 2.6rem);
+        word-break: break-word;
+        hyphens: auto;
+    }
+    
+    .section-title {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+        word-break: break-word;
     }
 
     .hero-actions,
     .cta-actions {
         flex-direction: column;
+        width: 100%;
+        gap: 12px;
     }
 
-    .btn, .btn-sm { width: 100%; }
+    .btn, .btn-sm { width: 100%; text-align: center; justify-content: center; }
+
+    .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        text-align: center;
+    }
 
     .hero-card,
     .about-panel,
@@ -922,12 +950,17 @@ h1, h2, h3 {
     .news-card,
     .news-post,
     .cta-box {
-        padding: 22px;
+        padding: 24px;
     }
 
-    .footer-content,
-    .footer-nav { align-items: stretch; }
-    .footer-nav a { width: 100%; }
+    /* Melhora a lista de navegação do rodapé no telemóvel */
+    .footer-nav { flex-direction: column; width: 100%; }
+    .footer-nav a { 
+        width: 100%; 
+        padding: 10px 0; 
+        border-bottom: 1px solid var(--line); 
+    }
+    .footer-nav a:last-child { border-bottom: none; }
 }
 
 /* ── Reduced motion ── */
@@ -944,56 +977,4 @@ h1, h2, h3 {
         opacity: 1;
         transform: none;
     }
-}
-
-/* ============================================================
-   TEMA CLARO (Light Mode)
-   ============================================================ */
-[data-theme="light"] {
-    /* Superfícies */
-    --bg:               #f4f3f0;
-    --surface:          #ffffff;
-    --surface-2:        #faf9f7;
-    --surface-3:        #f0eee9;
-    --surface-dark:     #eae7e0;
-    --surface-dark-2:   #e2dfd6;
-
-    /* Texto */
-    --text:             #1a1918;
-    --text-soft:        #575550;
-    --text-muted:       #807c75;
-    --text-light:       #000000;
-    --text-muted-dark:  #a6a29a;
-
-    /* Bordas */
-    --line:             rgba(0, 0, 0, 0.08);
-    --line-dark:        rgba(0, 0, 0, 0.12);
-    --line-strong:      rgba(0, 0, 0, 0.18);
-
-    /* Acento (Laranja ajustado para contraste no claro) */
-    --accent:           #d14d05;
-    --accent-hover:     #b04104;
-    --accent-dim:       rgba(209, 77, 5, 0.08);
-    --accent-glow:      rgba(209, 77, 5, 0.04);
-
-    /* Sombras mais suaves */
-    --shadow-sm:        0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
-    --shadow-lg:        0 4px 6px rgba(0, 0, 0, 0.04), 0 16px 40px rgba(0, 0, 0, 0.06);
-}
-
-/* Ajustes específicos para o Header no Tema Claro */
-[data-theme="light"] .site-header {
-    background: rgba(244, 243, 240, 0.90);
-}
-[data-theme="light"] .site-header.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-}
-
-/* Troca de ícones baseada no tema */
-[data-theme="light"] .icon-sun { display: none; }
-[data-theme="light"] .icon-moon { display: block !important; }
-
-/* Inverter gradientes visuais do hero para a versão clara */
-[data-theme="light"] .hero-overlay {
-    background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
 }
