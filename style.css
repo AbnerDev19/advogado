@@ -231,31 +231,36 @@ h1, h2, h3 {
 
 .site-nav a:hover { color: var(--text-light); }
 
-/* ── Menu toggle e Tema ── */
+/* ── Menu toggle e Tema (Novo estilo discreto) ── */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.theme-toggle {
+.theme-toggle-discreet {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: var(--surface-2);
-    border: 1px solid var(--line-strong);
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
     color: var(--text-soft);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.theme-toggle:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-1px);
+.theme-toggle-discreet:hover {
+    color: var(--text-light);
+    transform: scale(1.05);
+}
+
+.theme-item {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border-left: 1px solid var(--line);
 }
 
 .menu-toggle {
@@ -807,6 +812,11 @@ h1, h2, h3 {
     transform: translateY(0);
 }
 
+
+/* ============================================================
+   RESPONSIVIDADE (Novas Regras)
+   ============================================================ */
+
 /* ── Responsivo 1100px (Tablets em modo paisagem e Ecrãs pequenos) ── */
 @media (max-width: 1100px) {
     .hero-grid,
@@ -873,6 +883,14 @@ h1, h2, h3 {
         color: var(--text-light);
     }
 
+    /* Ajuste do botão de tema no mobile */
+    .theme-item {
+        border-left: none;
+        padding-left: 0;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
     .cards-grid,
     .news-grid,
     .news-layout,
@@ -910,7 +928,7 @@ h1, h2, h3 {
 
 /* ── Responsivo 640px (Smartphones) ── */
 @media (max-width: 640px) {
-    .section { padding: 48px 0; } /* Padding otimizado para mobile */
+    .section { padding: 48px 0; }
 
     .container { width: min(100% - 32px, var(--container)); }
 
@@ -977,4 +995,56 @@ h1, h2, h3 {
         opacity: 1;
         transform: none;
     }
+}
+
+/* ============================================================
+   TEMA CLARO (Light Mode)
+   ============================================================ */
+[data-theme="light"] {
+    /* Superfícies */
+    --bg:               #f4f3f0;
+    --surface:          #ffffff;
+    --surface-2:        #faf9f7;
+    --surface-3:        #f0eee9;
+    --surface-dark:     #eae7e0;
+    --surface-dark-2:   #e2dfd6;
+
+    /* Texto */
+    --text:             #1a1918;
+    --text-soft:        #575550;
+    --text-muted:       #807c75;
+    --text-light:       #000000;
+    --text-muted-dark:  #a6a29a;
+
+    /* Bordas */
+    --line:             rgba(0, 0, 0, 0.08);
+    --line-dark:        rgba(0, 0, 0, 0.12);
+    --line-strong:      rgba(0, 0, 0, 0.18);
+
+    /* Acento (Laranja ajustado para contraste no claro) */
+    --accent:           #d14d05;
+    --accent-hover:     #b04104;
+    --accent-dim:       rgba(209, 77, 5, 0.08);
+    --accent-glow:      rgba(209, 77, 5, 0.04);
+
+    /* Sombras mais suaves */
+    --shadow-sm:        0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-lg:        0 4px 6px rgba(0, 0, 0, 0.04), 0 16px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Ajustes específicos para o Header no Tema Claro */
+[data-theme="light"] .site-header {
+    background: rgba(244, 243, 240, 0.90);
+}
+[data-theme="light"] .site-header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* Troca de ícones baseada no tema */
+[data-theme="light"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: block !important; }
+
+/* Inverter gradientes visuais do hero para a versão clara */
+[data-theme="light"] .hero-overlay {
+    background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
 }
