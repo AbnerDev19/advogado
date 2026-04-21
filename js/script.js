@@ -106,3 +106,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// ==========================================
+    // Lógica do Formulário de Contato (CRM)
+    // ==========================================
+    const leadForm = document.getElementById('lead-form');
+
+    if (leadForm) {
+        leadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const btnSubmit = leadForm.querySelector('button[type="submit"]');
+            const originalText = btnSubmit.textContent;
+
+            // Coleta dos dados para estruturação no banco de dados (ex: Firebase Firestore)
+            const leadData = {
+                nome: document.getElementById('client-name').value,
+                contato: document.getElementById('client-contact').value,
+                motivo: document.getElementById('client-reason').value,
+                status: 'pendente', // Status inicial para o CRM (pendente, em andamento, concluido)
+                data_criacao: new Date().toISOString()
+            };
+
+            // Simulação de requisição
+            btnSubmit.disabled = true;
+            btnSubmit.textContent = 'Processando...';
+
+            console.log('Payload preparado para envio ao banco de dados:', leadData);
+
+            setTimeout(() => {
+                alert('Solicitação recebida com sucesso. A equipe retornará em breve.');
+                leadForm.reset();
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = originalText;
+            }, 1200);
+        });
+    }
