@@ -325,3 +325,123 @@
     display: flex;
     justify-content: flex-end;
 }
+/* ============================================================
+   SISTEMA DE ABAS (TABS)
+   ============================================================ */
+.tabs-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 16px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+}
+
+.tab-btn:hover {
+    color: var(--text-light);
+    background: var(--surface-2);
+}
+
+.tab-btn.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(232, 88, 10, 0.2);
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeInTab 0.3s ease-out forwards;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   FORMULÁRIOS INTERNOS (DASHBOARD)
+   ============================================================ */
+.admin-form-container {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    padding: 32px;
+}
+
+.admin-form .form-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.admin-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.admin-form label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    transition: border-color 0.2s;
+}
+
+.admin-form select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-actions-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .admin-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
