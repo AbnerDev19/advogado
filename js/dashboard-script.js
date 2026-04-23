@@ -191,3 +191,85 @@ document.addEventListener('DOMContentLoaded', () => {
     updateStats();
     renderTable();
 });
+// ==========================================
+    // Lógica do Sistema de Abas
+    // ==========================================
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove ativação de todos
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+
+            // Ativa o clicado
+            btn.classList.add('active');
+            const targetId = btn.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    // ==========================================
+    // Lógica de Postagem de Notícias
+    // ==========================================
+    const newsForm = document.getElementById('news-form');
+    const newsTableBody = document.getElementById('news-table-body');
+    
+    // Simulação de banco de dados para notícias
+    let mockNewsData = [
+        { id: 'N-01', data: '2026-04-23T08:00:00Z', categoria: 'Destaque', titulo: 'Como uma presença digital fortalece confiança' },
+        { id: 'N-02', data: '2026-04-20T10:00:00Z', categoria: 'Contratos', titulo: 'O valor da prevenção jurídica nas relações negociais' }
+    ];
+
+    const renderNewsTable = () => {
+        if (!newsTableBody) return;
+        newsTableBody.innerHTML = '';
+
+        if (mockNewsData.length === 0) {
+            newsTableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Nenhum conteúdo publicado.</td></tr>`;
+            return;
+        }
+
+        mockNewsData.forEach(news => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${formatDate(news.data).split(',')[0]}</td>
+                <td><span style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">${news.categoria}</span></td>
+                <td><strong>${news.titulo}</strong></td>
+                <td>
+                    <button class="action-btn" onclick="alert('Funcionalidade de exclusão pronta para integração no backend.')">Excluir</button>
+                </td>
+            `;
+            newsTableBody.appendChild(tr);
+        });
+    };
+
+    if (newsForm) {
+        newsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const titulo = document.getElementById('news-title').value;
+            const categoria = document.getElementById('news-category').value;
+            const resumo = document.getElementById('news-excerpt').value;
+            
+            const novaNoticia = {
+                id: `N-${Date.now()}`,
+                data: new Date().toISOString(),
+                categoria: categoria,
+                titulo: titulo,
+                resumo: resumo
+            };
+            
+            mockNewsData.unshift(novaNoticia);
+            renderNewsTable();
+            newsForm.reset();
+            
+            // Log para console focado em desenvolvedor
+            console.log('Nova notícia salva localmente. Pronta para POST via Firebase:', novaNoticia);
+            alert('Artigo publicado com sucesso!');
+        });
+
+        // Renderiza a tabela de notícias ao carregar
+        renderNewsTable();
+    }
