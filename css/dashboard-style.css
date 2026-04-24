@@ -325,3 +325,128 @@
     display: flex;
     justify-content: flex-end;
 }
+/* ============================================================
+   NAVEGAÇÃO EM ABAS (NOVO)
+   ============================================================ */
+.dashboard-nav {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line-strong);
+    padding-top: 10px;
+}
+
+.nav-container {
+    width: min(100% - 48px, 1400px);
+    margin: 0 auto;
+    display: flex;
+    gap: 32px;
+}
+
+.nav-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 12px 0;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-tab:hover {
+    color: var(--text-light);
+}
+
+.nav-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeInTab 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   FORMULÁRIOS (MODAL DE NOTÍCIAS)
+   ============================================================ */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Ações Notícias */
+.action-btn.edit-btn {
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.action-btn.edit-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.action-btn.delete-btn {
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
+    margin-left: 8px;
+}
+
+.action-btn.delete-btn:hover {
+    background: rgba(248, 113, 113, 0.1);
+}
+
+/* Badges Status Notícia */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.status-badge.publicado { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.status-badge.rascunho { background: rgba(156, 163, 175, 0.15); color: #9ca3af; }

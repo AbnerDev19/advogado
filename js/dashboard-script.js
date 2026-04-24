@@ -1,75 +1,60 @@
+// ==========================================
+// FUNÇÕES GLOBAIS (Abas e Modais)
+// ==========================================
+function switchTab(tabId) {
+    // Esconder todas as abas
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+    
+    // Mostrar a aba selecionada
+    document.getElementById(`tab-${tabId}`).classList.add('active');
+    document.querySelector(`button[onclick="switchTab('${tabId}')"]`).classList.add('active');
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.remove('is-active');
+}
+
+// ==========================================
+// LÓGICA DO DASHBOARD (Quando a página carrega)
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Simulação de dados recebidos do banco de dados (ex: Firestore)
+    
+    // ==========================================
+    // 1. MÓDULO: CONTATOS (Existente)
+    // ==========================================
     let mockLeads = [
-        {
-            id: 'LD-001',
-            nome: 'Carlos Eduardo Mendes',
-            contato: 'carlos.mendes@email.com',
-            motivo: 'Revisão de contrato social da empresa',
-            status: 'novo_contato',
-            data_registro: '2026-04-20T10:30:00Z'
-        },
-        {
-            id: 'LD-002',
-            nome: 'Fernanda Albuquerque',
-            contato: '(61) 98888-7777',
-            motivo: 'Planejamento sucessório familiar',
-            status: 'em_andamento',
-            data_registro: '2026-04-18T14:15:00Z'
-        },
-        {
-            id: 'LD-003',
-            nome: 'Ricardo Gomes',
-            contato: 'ricardo@empresa.com.br',
-            motivo: 'Consulta sobre compliance digital',
-            status: 'concluido',
-            data_registro: '2026-04-10T09:00:00Z'
-        }
+        { id: 'LD-001', nome: 'Carlos Eduardo Mendes', contato: 'carlos.mendes@email.com', motivo: 'Revisão de contrato social da empresa', status: 'novo_contato', data_registro: '2026-04-20T10:30:00Z' },
+        { id: 'LD-002', nome: 'Fernanda Albuquerque', contato: '(61) 98888-7777', motivo: 'Planejamento sucessório familiar', status: 'em_andamento', data_registro: '2026-04-18T14:15:00Z' },
+        { id: 'LD-003', nome: 'Ricardo Gomes', contato: 'ricardo@empresa.com.br', motivo: 'Consulta sobre compliance digital', status: 'concluido', data_registro: '2026-04-10T09:00:00Z' }
     ];
 
-    const tableBody = document.getElementById('leads-table-body');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-
-    // Elementos do Modal
-    const modal = document.getElementById('details-modal');
-    const closeModalBtn = document.getElementById('close-modal');
-    const closeModalFooterBtn = document.getElementById('btn-close-modal-footer');
-    const modalBody = document.getElementById('modal-body-content');
-
-    // Função de formatação de data
+    const leadsTableBody = document.getElementById('leads-table-body');
+    
     const formatDate = (isoString) => {
         const date = new Date(isoString);
-        return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        return date.toLocaleDateString('pt-BR');
     };
 
-    // Função para atualizar os contadores no topo
-    const updateStats = () => {
-        const novos = mockLeads.filter(lead => lead.status === 'novo_contato').length;
-        const andamento = mockLeads.filter(lead => lead.status === 'em_andamento').length;
-        
-        document.getElementById('count-novos').textContent = novos;
-        document.getElementById('count-andamento').textContent = andamento;
+    const updateLeadStats = () => {
+        document.getElementById('count-novos').textContent = mockLeads.filter(l => l.status === 'novo_contato').length;
+        document.getElementById('count-andamento').textContent = mockLeads.filter(l => l.status === 'em_andamento').length;
         document.getElementById('count-total').textContent = mockLeads.length;
     };
 
-    // Função para renderizar a tabela
-    const renderTable = (filterStatus = 'all') => {
-        tableBody.innerHTML = '';
-        
-        const filteredLeads = filterStatus === 'all' 
-            ? mockLeads 
-            : mockLeads.filter(lead => lead.status === filterStatus);
+    const renderLeadsTable = (filterStatus = 'all') => {
+        leadsTableBody.innerHTML = '';
+        const filtered = filterStatus === 'all' ? mockLeads : mockLeads.filter(l => l.status === filterStatus);
 
-        if (filteredLeads.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhum contato encontrado.</td></tr>`;
+        if (filtered.length === 0) {
+            leadsTableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhum contato encontrado.</td></tr>`;
             return;
         }
 
-        filteredLeads.forEach(lead => {
+        filtered.forEach(lead => {
             const tr = document.createElement('tr');
-            
             tr.innerHTML = `
-                <td>${formatDate(lead.data_registro).split(',')[0]}</td>
+                <td>${formatDate(lead.data_registro)}</td>
                 <td><strong>${lead.nome}</strong></td>
                 <td>${lead.contato}</td>
                 <td class="cell-reason" title="${lead.motivo}">${lead.motivo}</td>
@@ -80,114 +65,150 @@ document.addEventListener('DOMContentLoaded', () => {
                         <option value="concluido" ${lead.status === 'concluido' ? 'selected' : ''}>Concluído</option>
                     </select>
                 </td>
-                <td>
-                    <button class="action-btn view-details-btn" data-id="${lead.id}">Ver Detalhes</button>
-                </td>
+                <td><button class="action-btn" onclick="openLeadDetails('${lead.id}')">Ver Detalhes</button></td>
             `;
-            
-            tableBody.appendChild(tr);
+            leadsTableBody.appendChild(tr);
         });
 
-        // Eventos para Select de Status
         document.querySelectorAll('.status-select').forEach(select => {
-            select.addEventListener('change', handleStatusChange);
-        });
-
-        // Eventos para Botão Ver Detalhes
-        document.querySelectorAll('.view-details-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = e.target.getAttribute('data-id');
-                openDetailsModal(id);
+            select.addEventListener('change', (e) => {
+                const newStatus = e.target.value;
+                const lead = mockLeads.find(l => l.id === e.target.getAttribute('data-id'));
+                if(lead) { lead.status = newStatus; updateLeadStats(); e.target.setAttribute('data-status', newStatus); }
             });
         });
     };
 
-    // Função para lidar com a alteração de status
-    const handleStatusChange = (e) => {
-        const select = e.target;
-        const id = select.getAttribute('data-id');
-        const newStatus = select.value;
-
-        select.setAttribute('data-status', newStatus);
-
-        const leadIndex = mockLeads.findIndex(l => l.id === id);
-        if (leadIndex !== -1) {
-            mockLeads[leadIndex].status = newStatus;
-        }
-
-        updateStats();
-        console.log(`Status do lead ${id} atualizado para ${newStatus}`);
-    };
-
-    // Filtros
-    filterButtons.forEach(btn => {
+    // Filtros de contatos
+    document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            filterButtons.forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            
-            const filter = e.target.getAttribute('data-filter');
-            renderTable(filter);
+            renderLeadsTable(e.target.getAttribute('data-filter'));
         });
     });
 
-    // ==========================================
-    // Lógica do Modal de Detalhes
-    // ==========================================
-    const openDetailsModal = (id) => {
+    window.openLeadDetails = (id) => {
         const lead = mockLeads.find(l => l.id === id);
-        if (!lead) return;
-
-        const statusMap = {
-            'novo_contato': 'Novo Contato',
-            'em_andamento': 'Em Andamento',
-            'concluido': 'Concluído'
-        };
-
-        modalBody.innerHTML = `
-            <div class="detail-group">
-                <label>ID da Solicitação</label>
-                <p>${lead.id}</p>
-            </div>
-            <div class="detail-group">
-                <label>Data de Registro</label>
-                <p>${formatDate(lead.data_registro)}</p>
-            </div>
-            <div class="detail-group">
-                <label>Nome Completo</label>
-                <p>${lead.nome}</p>
-            </div>
-            <div class="detail-group">
-                <label>Contato</label>
-                <p>${lead.contato}</p>
-            </div>
-            <div class="detail-group">
-                <label>Status</label>
-                <p>${statusMap[lead.status] || lead.status}</p>
-            </div>
-            <div class="detail-group">
-                <label>Motivo / Resumo do Caso</label>
-                <p>${lead.motivo}</p>
-            </div>
+        if(!lead) return;
+        const map = { 'novo_contato': 'Novo Contato', 'em_andamento': 'Em Andamento', 'concluido': 'Concluído' };
+        document.getElementById('modal-body-content').innerHTML = `
+            <div class="detail-group"><label>Data</label><p>${formatDate(lead.data_registro)}</p></div>
+            <div class="detail-group"><label>Nome</label><p>${lead.nome}</p></div>
+            <div class="detail-group"><label>Contato</label><p>${lead.contato}</p></div>
+            <div class="detail-group"><label>Status</label><p>${map[lead.status]}</p></div>
+            <div class="detail-group"><label>Motivo</label><p>${lead.motivo}</p></div>
         `;
+        document.getElementById('details-modal').classList.add('is-active');
+    };
+
+    updateLeadStats();
+    renderLeadsTable();
+
+
+    // ==========================================
+    // 2. MÓDULO: NOTÍCIAS (Novo)
+    // ==========================================
+    let mockNews = [
+        { id: 1, titulo: 'A importância do Compliance Digital', categoria: 'Direito Empresarial', status: 'Publicado', conteudo: 'Texto completo aqui...', data: '2026-04-15' },
+        { id: 2, titulo: 'Novas regras para o e-commerce', categoria: 'Informativo', status: 'Rascunho', conteudo: 'Texto do rascunho...', data: '2026-04-20' }
+    ];
+
+    const newsTableBody = document.getElementById('news-table-body');
+
+    window.renderNewsTable = () => {
+        newsTableBody.innerHTML = '';
+        if (mockNews.length === 0) {
+            newsTableBody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Nenhuma notícia cadastrada.</td></tr>`;
+            return;
+        }
+
+        mockNews.forEach(news => {
+            const tr = document.createElement('tr');
+            const badgeClass = news.status === 'Publicado' ? 'publicado' : 'rascunho';
+            
+            tr.innerHTML = `
+                <td>${formatDate(news.data)}</td>
+                <td><strong>${news.titulo}</strong></td>
+                <td>${news.categoria}</td>
+                <td><span class="status-badge ${badgeClass}">${news.status}</span></td>
+                <td>
+                    <button class="action-btn edit-btn" onclick="openNewsModal(${news.id})">Editar</button>
+                    <button class="action-btn delete-btn" onclick="deleteNews(${news.id})">Excluir</button>
+                </td>
+            `;
+            newsTableBody.appendChild(tr);
+        });
+    };
+
+    window.openNewsModal = (id = null) => {
+        const modal = document.getElementById('news-modal');
+        const form = document.getElementById('news-form');
+        
+        if (id) {
+            // Modo Edição
+            const news = mockNews.find(n => n.id === id);
+            document.getElementById('news-modal-title').textContent = 'Editar Notícia';
+            document.getElementById('news-id').value = news.id;
+            document.getElementById('news-title').value = news.titulo;
+            document.getElementById('news-category').value = news.categoria;
+            document.getElementById('news-status').value = news.status;
+            document.getElementById('news-content').value = news.conteudo;
+        } else {
+            // Modo Criação
+            form.reset();
+            document.getElementById('news-modal-title').textContent = 'Nova Notícia';
+            document.getElementById('news-id').value = '';
+        }
         
         modal.classList.add('is-active');
     };
 
-    const closeModal = () => {
-        modal.classList.remove('is-active');
+    window.saveNews = (event) => {
+        event.preventDefault(); // Impede o envio real do formulário
+        
+        const id = document.getElementById('news-id').value;
+        const titulo = document.getElementById('news-title').value;
+        const categoria = document.getElementById('news-category').value;
+        const status = document.getElementById('news-status').value;
+        const conteudo = document.getElementById('news-content').value;
+
+        if (id) {
+            // Atualizar existente
+            const index = mockNews.findIndex(n => n.id == id);
+            mockNews[index] = { ...mockNews[index], titulo, categoria, status, conteudo };
+        } else {
+            // Criar nova
+            const novaNoticia = {
+                id: Date.now(), // Gera um ID único simples
+                titulo,
+                categoria,
+                status,
+                conteudo,
+                data: new Date().toISOString()
+            };
+            mockNews.unshift(novaNoticia); // Adiciona no início da lista
+        }
+
+        closeModal('news-modal');
+        renderNewsTable();
+        alert('Notícia salva com sucesso!');
     };
 
-    closeModalBtn.addEventListener('click', closeModal);
-    closeModalFooterBtn.addEventListener('click', closeModal);
+    window.deleteNews = (id) => {
+        if(confirm('Tem certeza que deseja excluir esta notícia? Esta ação não pode ser desfeita.')) {
+            mockNews = mockNews.filter(n => n.id !== id);
+            renderNewsTable();
+        }
+    };
 
-    // Fechar modal ao clicar fora da caixa principal
+    // Inicializar tabela de notícias
+    renderNewsTable();
+
+    // Fechar modais ao clicar fora
     window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target.id);
         }
     });
-
-    // Inicialização
-    updateStats();
-    renderTable();
 });
