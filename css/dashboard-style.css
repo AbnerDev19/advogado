@@ -62,6 +62,7 @@
     padding: 6px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--line);
+    flex-wrap: wrap;
 }
 
 .filter-btn {
@@ -203,6 +204,12 @@
     border-color: rgba(16, 185, 129, 0.3);
 }
 
+.status-select[data-status="arquivado"] {
+    background: rgba(156, 163, 175, 0.15);
+    color: #9ca3af;
+    border-color: rgba(156, 163, 175, 0.3);
+}
+
 /* Ações */
 .action-btn {
     background: transparent;
@@ -219,8 +226,9 @@
     color: var(--text-light);
     border-color: var(--text-muted);
 }
+
 /* ============================================================
-   MODAL DE DETALHES
+   MODAIS E NOTAS INTERNAS
    ============================================================ */
 .modal {
     display: none;
@@ -250,9 +258,20 @@
     animation: modalFadeIn 0.25s ease-out;
 }
 
+.modal-lg {
+    max-width: 850px;
+}
+
 @keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-header {
@@ -285,8 +304,20 @@
 
 .modal-body {
     padding: 28px;
-    max-height: 60vh;
+    max-height: 65vh;
     overflow-y: auto;
+}
+
+.modal-split {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+}
+
+.modal-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .detail-group {
@@ -315,8 +346,58 @@
     border-radius: var(--radius-sm);
     border: 1px solid var(--line);
     margin: 0;
-    white-space: pre-wrap; /* Mantém as quebras de linha digitadas pelo cliente no textarea */
+    white-space: pre-wrap;
     line-height: 1.6;
+}
+
+/* Área de Notas Internas */
+.modal-notes-area {
+    background: var(--surface-2);
+    border-left: 1px solid var(--line);
+    padding-left: 24px;
+}
+
+.modal-notes-area h4 {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0;
+}
+
+.notes-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-right: 8px;
+}
+
+.note-item {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.note-text {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
 }
 
 .modal-footer {
@@ -325,8 +406,9 @@
     display: flex;
     justify-content: flex-end;
 }
+
 /* ============================================================
-   NAVEGAÇÃO EM ABAS (NOVO)
+   NAVEGAÇÃO EM ABAS
    ============================================================ */
 .dashboard-nav {
     background: var(--surface-2);
@@ -372,8 +454,15 @@
 }
 
 @keyframes fadeInTab {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ============================================================
@@ -448,5 +537,33 @@ textarea.form-control {
     font-size: 0.8rem;
     font-weight: 600;
 }
-.status-badge.publicado { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-.status-badge.rascunho { background: rgba(156, 163, 175, 0.15); color: #9ca3af; }
+
+.status-badge.publicado {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+.status-badge.rascunho {
+    background: rgba(156, 163, 175, 0.15);
+    color: #9ca3af;
+}
+
+/* Responsividade Modais */
+@media (max-width: 768px) {
+    .modal-split {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .modal-notes-area {
+        border-left: none;
+        border-top: 1px solid var(--line);
+        padding-left: 0;
+        padding-top: 20px;
+    }
+
+    .form-group-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}

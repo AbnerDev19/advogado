@@ -44,6 +44,7 @@
                         <button class="filter-btn" data-filter="novo_contato">Novos</button>
                         <button class="filter-btn" data-filter="em_andamento">Em Andamento</button>
                         <button class="filter-btn" data-filter="concluido">Concluídos</button>
+                        <button class="filter-btn" data-filter="arquivado">Arquivados</button>
                     </div>
                 </header>
 
@@ -57,7 +58,7 @@
                         <strong class="stat-value" id="count-andamento">0</strong>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-title">Total Cadastrado</span>
+                        <span class="stat-title">Total Ativo</span>
                         <strong class="stat-value" id="count-total">0</strong>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th>Título</th>
+                                <th>Título / Slug</th>
                                 <th>Categoria</th>
                                 <th>Status</th>
                                 <th>Ações</th>
@@ -105,20 +106,36 @@
     </main>
 
     <div id="details-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-lg">
             <div class="modal-header">
                 <h3>Detalhes da Solicitação</h3>
                 <button class="close-btn" onclick="closeModal('details-modal')" aria-label="Fechar">&times;</button>
             </div>
-            <div class="modal-body" id="modal-body-content"></div>
-            <div class="modal-footer">
+            <div class="modal-body modal-split">
+                <div class="modal-col" id="modal-body-content"></div>
+                
+                <div class="modal-col modal-notes-area">
+                    <h4>Notas Internas (Invisível ao cliente)</h4>
+                    <div class="notes-list" id="lead-notes-list">
+                        </div>
+                    <div class="add-note-form">
+                        <textarea id="new-note-text" placeholder="Adicionar nova nota (ex: Aguardando documentos)..." rows="3" class="form-control"></textarea>
+                        <button class="btn btn-sm btn-primary" onclick="addLeadNote()" style="margin-top: 8px;">Salvar Nota</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: space-between;">
+                <div>
+                    <button class="btn btn-sm btn-ghost" id="btn-archive-lead" style="color: var(--text-soft);">Arquivar (Soft Delete)</button>
+                    <button class="btn btn-sm btn-ghost" id="btn-delete-lead" style="color: #ef4444; margin-left: 8px;">Excluir Permanente</button>
+                </div>
                 <button class="btn btn-primary" onclick="closeModal('details-modal')">Fechar Painel</button>
             </div>
         </div>
     </div>
 
     <div id="news-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-lg">
             <div class="modal-header">
                 <h3 id="news-modal-title">Nova Notícia</h3>
                 <button class="close-btn" onclick="closeModal('news-modal')" aria-label="Fechar">&times;</button>
@@ -127,9 +144,15 @@
                 <div class="modal-body">
                     <input type="hidden" id="news-id">
                     
-                    <div class="form-group">
-                        <label>Título da Notícia</label>
-                        <input type="text" id="news-title" class="form-control" required placeholder="Ex: Nova lei trabalhista aprovada">
+                    <div class="form-group-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Título da Notícia</label>
+                            <input type="text" id="news-title" class="form-control" required placeholder="Ex: Nova lei trabalhista aprovada">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Slug (URL amigável)</label>
+                            <input type="text" id="news-slug" class="form-control" placeholder="nova-lei-trabalhista">
+                        </div>
                     </div>
 
                     <div class="form-group-row">
@@ -137,9 +160,9 @@
                             <label>Categoria</label>
                             <select id="news-category" class="form-control" required>
                                 <option value="Direito Empresarial">Direito Empresarial</option>
-                                <option value="Direito Civil">Direito Civil</option>
-                                <option value="Direito Trabalhista">Direito Trabalhista</option>
-                                <option value="Informativo">Informativo</option>
+                                <option value="Direito Imobiliário">Direito Imobiliário</option>
+                                <option value="Família e Sucessões">Família e Sucessões</option>
+                                <option value="Contratos e Consultoria">Contratos e Consultoria</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -152,8 +175,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Conteúdo</label>
-                        <textarea id="news-content" class="form-control" rows="6" required placeholder="Digite o conteúdo da publicação..."></textarea>
+                        <label>Resumo (Texto curto para a listagem principal)</label>
+                        <textarea id="news-summary" class="form-control" rows="2" required placeholder="Escreva uma breve descrição que aparecerá nos cards da página inicial..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Conteúdo (Rich Text / HTML)</label>
+                        <textarea id="news-content" class="form-control" rows="8" required placeholder="<p>Escreva o conteúdo completo aqui usando tags HTML...</p>"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
