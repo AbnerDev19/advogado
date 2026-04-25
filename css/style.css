@@ -1,7 +1,7 @@
 /* ============================================================
-   Vitor Rocha Advocacia — Design System v2
-   Tipografia: Cormorant Garamond (headings) + DM Sans (body)
-   Paleta: Fosco escuro · Laranja acento · Gold subtil
+   Vitor Rocha Advocacia — Design System v3
+   Tipografia: Playfair Display (headings) + DM Sans (body)
+   Paleta: Fosco escuro · Laranja acento · Vinho VR monograma
    ============================================================ */
 
 :root {
@@ -22,6 +22,9 @@
   --accent-h:     #c94d09;
   --accent-dim:   rgba(232,88,10,0.10);
 
+  --wine:         #7B1820;
+  --wine-h:       #6a141b;
+
   --green:        #22c55e;
 
   --radius-sm:    8px;
@@ -31,7 +34,7 @@
   --hh:           76px;
 
   --font-body:    'DM Sans', sans-serif;
-  --font-head:    'Cormorant Garamond', serif;
+  --font-head:    'Playfair Display', serif;
 
   --shadow:       0 4px 24px rgba(0,0,0,0.5);
   --shadow-lg:    0 8px 48px rgba(0,0,0,0.6);
@@ -54,9 +57,9 @@ button, input, textarea, select { font: inherit; }
 ul { list-style: none; }
 h1,h2,h3,h4 {
   font-family: var(--font-head);
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.01em;
-  font-weight: 600;
+  font-weight: 700;
 }
 :focus-visible { outline: 2px solid rgba(232,88,10,0.5); outline-offset: 3px; }
 
@@ -130,11 +133,12 @@ h1,h2,h3,h4 {
   width: 42px; height: 42px;
   display: grid; place-items: center;
   border-radius: 10px;
-  background: var(--surface-3);
-  border: 1px solid var(--line-strong);
-  color: var(--accent);
+  background: var(--wine);
+  border: 1px solid rgba(123,24,32,0.5);
+  color: #fff;
   font-family: var(--font-head);
   font-size: 1.1rem; font-weight: 700;
+  letter-spacing: -0.03em;
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
 .brand-text strong { font-size: 0.95rem; color: var(--text-light); font-weight: 600; font-family: var(--font-body); }
@@ -446,30 +450,77 @@ h1,h2,h3,h4 {
   font-family: var(--font-body);
 }
 
-/* ── Diferenciais ── */
-.diff-grid {
+/* ── Diferenciais — layout lista numerada ── */
+.diff-header {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line-strong);
 }
-.diff-card {
-  background: var(--surface-3);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 26px;
-  transition: border-color 0.2s, background 0.2s;
+.diff-header-text .section-tag { margin-bottom: 14px; }
+.diff-header-text .section-title { margin-bottom: 0; }
+.diff-header-sub {
+  font-size: 1rem;
+  color: var(--text-soft);
+  line-height: 1.8;
+  align-self: end;
 }
-.diff-card:hover { border-color: var(--line-strong); background: var(--surface-2); }
-.diff-icon {
-  width: 40px; height: 40px;
+
+.diff-list { display: flex; flex-direction: column; }
+
+.diff-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.2s;
+}
+.diff-row:last-child { border-bottom: none; }
+.diff-row:hover { padding-left: 8px; }
+
+.diff-row-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 4px;
+}
+.diff-num {
+  font-family: var(--font-head);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232,88,10,0.25);
+  letter-spacing: -0.02em;
+}
+.diff-row-icon {
+  width: 36px; height: 36px;
   display: grid; place-items: center;
   border-radius: 8px;
   background: var(--accent-dim);
+  border: 1px solid rgba(232,88,10,0.12);
   color: var(--accent);
-  margin-bottom: 14px;
 }
-.diff-card h3 { font-size: 1.1rem; color: var(--text-light); margin-bottom: 10px; }
-.diff-card p  { font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; }
+
+.diff-row-content {
+  padding: 4px 0 4px 40px;
+  border-left: 1px solid var(--line);
+}
+.diff-row-content h3 {
+  font-size: 1.4rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.diff-row-content p {
+  font-size: 0.93rem;
+  color: var(--text-soft);
+  line-height: 1.8;
+  max-width: 640px;
+}
 
 /* ── News preview ── */
 .news-preview-grid {
@@ -715,7 +766,7 @@ a.footer-contact-item:hover { color: var(--text-light); }
 @media (max-width: 1024px) {
   .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 44px; }
   .hero-card, .about-visual { max-width: 600px; }
-  .diff-grid { grid-template-columns: repeat(2,1fr); }
+  .diff-header { grid-template-columns: 1fr; gap: 16px; }
   .news-preview-grid { grid-template-columns: 1fr 1fr; }
   .news-prev-featured { grid-column: 1 / -1; }
   .footer-top { grid-template-columns: 1fr 1fr; }
@@ -746,7 +797,9 @@ a.footer-contact-item:hover { color: var(--text-light); }
 
   .trust-grid { grid-template-columns: repeat(2,1fr); padding: 20px 0; }
   .cards-grid { grid-template-columns: 1fr; }
-  .diff-grid { grid-template-columns: 1fr; }
+  .diff-row { grid-template-columns: 80px 1fr; }
+  .diff-num { font-size: 2.2rem; }
+  .diff-row-content { padding-left: 24px; }
   .news-preview-grid { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; gap: 40px; }
   .articles-grid { grid-template-columns: 1fr; }
@@ -807,3 +860,10 @@ a.footer-contact-item:hover { color: var(--text-light); }
 [data-theme="light"] .form-group textarea { background: #fff; }
 [data-theme="light"] .contact-form-wrap { background: #fff; }
 [data-theme="light"] .whatsapp-float { box-shadow: 0 4px 20px rgba(37,211,102,0.25); }
+
+/* Monograma vinho mantém em tema claro */
+[data-theme="light"] .brand-monogram {
+  background: var(--wine) !important;
+  border-color: rgba(123,24,32,0.4) !important;
+  color: #fff !important;
+}
